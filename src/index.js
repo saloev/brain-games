@@ -1,7 +1,15 @@
 import readlineSync from 'readline-sync';
+import evenGame from './games/even-game';
 
-const greetingUser = () => {
-  console.log(`Hello, ${readlineSync.question('May I have your name? ')}`);
+export const greetingUser = () => {
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}`);
+  return userName;
 };
 
-export default greetingUser;
+export const startEvenGame = () => {
+  const userName = greetingUser();
+  const getResult = evenGame();
+
+  console.log(`${getResult}${userName}`);
+};
