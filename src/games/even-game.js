@@ -1,19 +1,28 @@
 import readlineSync from 'readline-sync';
 
-const evenGame = () => {
-  const iter = (counter) => {
-    const randomNum = Math.ceil(Math.random() * 50);
+const isEven = num => num % 2 === 0;
 
-    console.log(`Question: ${randomNum}`);
+const evenGame = (player) => {
+  const countOfCorrectAnswers = 3;
+  const iter = (counter) => {
+    if (counter === countOfCorrectAnswers) {
+      console.log(`Congragulation, ${player}`);
+      return undefined;
+    }
+
+    const question = Math.ceil(Math.random() * 50);
+
+    console.log(`Question: ${question}`);
 
     const userGuess = readlineSync.question('Your answer : ');
-    const correctAnswer = randomNum % 2 === 0 ? 'yes' : 'no';
+    const correctAnswer = isEven(question) ? 'yes' : 'no';
 
-    if (correctAnswer !== userGuess) return `'${userGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, `;
+    if (correctAnswer !== userGuess) {
+      console.log(`'${userGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);
+      return undefined;
+    }
 
     console.log('Correct!');
-
-    if (counter === 2) return 'Congratulations, ';
 
     return iter(counter + 1);
   };
