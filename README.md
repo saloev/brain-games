@@ -3,6 +3,7 @@
 
 ### INSTALL
 > npm i ss-brain-games -g 
-
-> [video  installation](https://asciinema.org/a/bRlGnFPWoCvpNEnwAA3xLXK6N)
+### Video instruction
+* [brain-even](https://asciinema.org/a/bRlGnFPWoCvpNEnwAA3xLXK6N) 
+* [brain-calc](https://asciinema.org/a/bkytvej26VCq89QLotCTniNwU)
 
