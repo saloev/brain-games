@@ -1,9 +1,6 @@
 import readlineSync from 'readline-sync';
-import evenGame from './games/even-game';
-import calcGame from './games/calc-game';
-import gcdGame from './games/gcd-game';
 
-const countOfCorrectAnswers = 3;
+let correctAnswersForWin = 3;
 
 export const greetingUser = (gameTitle) => {
   console.log('Welcome to the Brain Games!');
@@ -13,20 +10,31 @@ export const greetingUser = (gameTitle) => {
   return userName;
 };
 
-export const startEvenGame = () => {
-  const userName = greetingUser('Answer "yes" if number even otherwise answer "no".');
+export const isRightAnswer = (player, question, correctAnswer) => {
+  console.log(`Question: ${question}`);
 
-  evenGame(userName, countOfCorrectAnswers);
+  let playerGuess = readlineSync.question('Your answer : ');
+
+
+  if (typeof correctAnswer === 'number') {
+    playerGuess = +playerGuess;
+  }
+
+  if (correctAnswer !== playerGuess) {
+    console.log(`'${playerGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);
+    return false;
+  }
+
+  console.log('Correct!');
+
+  correctAnswersForWin -= 1;
+
+  if (correctAnswersForWin === 0) {
+    console.log(`Congragulation, ${player}`);
+    return false;
+  }
+
+  return true;
 };
 
-export const startCalcGame = () => {
-  const userName = greetingUser('What is the result of the expression?');
-
-  calcGame(userName, countOfCorrectAnswers);
-};
-
-export const startGcdGame = () => {
-  const userName = greetingUser('Find the greatest common divisor of given numbers.');
-
-  gcdGame(userName, countOfCorrectAnswers);
-};
+export const getRndInteger = (min, max) => Math.floor(Math.random() * (max - min) + min);

@@ -1,50 +1,41 @@
-import readlineSync from 'readline-sync';
 import { cons, car, cdr } from 'hexlet-pairs';
+import { greetingUser, isRightAnswer, getRndInteger } from '..';
+
+const player = greetingUser('What is the result of the expression?');
 
 const addPair = pair => car(pair) + cdr(pair);
 const diffPair = pair => car(pair) - cdr(pair);
 const multPair = pair => car(pair) * cdr(pair);
 
-const calcGame = (player, countOfCorrectAnswers) => {
-  for (let counter = 1; counter <= countOfCorrectAnswers; counter += 1) {
-    const randomNumOneForExpression = Math.ceil(Math.random() * 50);
-    const randomNumTwoForExpression = Math.ceil(Math.random() * 50);
-    const randomNumForSign = Math.ceil(Math.random() * 3);
+const calcGame = () => {
+  const randomNumOneForExpression = getRndInteger(0, 50);
+  const randomNumTwoForExpression = getRndInteger(0, 50);
+  const randomNumForSign = getRndInteger(1, 4);
 
-    let randomSignForExpression;
-    let correctAnswer;
+  let randomSignForExpression;
+  let correctAnswer;
 
-    const pair = cons(randomNumOneForExpression, randomNumTwoForExpression);
+  const pair = cons(randomNumOneForExpression, randomNumTwoForExpression);
 
-    if (randomNumForSign === 1) {
+  switch (randomNumForSign) {
+    case 1:
       randomSignForExpression = '+';
       correctAnswer = addPair(pair);
-    } else if (randomNumForSign === 2) {
+      break;
+    case 2:
       randomSignForExpression = '-';
       correctAnswer = diffPair(pair);
-    } else {
+      break;
+    default:
       randomSignForExpression = '*';
       correctAnswer = multPair(pair);
-    }
+      break;
+  }
 
-    const question = `${car(pair)} ${randomSignForExpression} ${cdr(pair)}`;
+  const question = `${car(pair)} ${randomSignForExpression} ${cdr(pair)}`;
 
-
-    console.log(`Question: ${question}`);
-
-    const userGuess = Number(readlineSync.question('Your answer : '));
-
-    if (correctAnswer !== userGuess) {
-      console.log(`'${userGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);
-      return;
-    }
-
-    console.log('Correct!');
-
-    if (counter === countOfCorrectAnswers) {
-      console.log(`Congragulation, ${player}`);
-      return;
-    }
+  if (isRightAnswer(player, question, correctAnswer)) {
+    calcGame();
   }
 };
 

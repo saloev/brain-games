@@ -1,27 +1,16 @@
-import readlineSync from 'readline-sync';
+import { greetingUser, isRightAnswer, getRndInteger } from '..';
+
+const player = greetingUser('Answer "yes" if number even otherwise answer "no".');
 
 const isEven = num => num % 2 === 0;
 
-const evenGame = (player, countOfCorrectAnswers) => {
-  for (let counter = 1; counter <= countOfCorrectAnswers; counter += 1) {
-    const question = Math.ceil(Math.random() * 50);
+const evenGame = () => {
+  const question = getRndInteger(0, 50);
 
-    console.log(`Question: ${question}`);
+  const correctAnswer = isEven(question) ? 'yes' : 'no';
 
-    const userGuess = readlineSync.question('Your answer : ');
-    const correctAnswer = isEven(question) ? 'yes' : 'no';
-
-    if (correctAnswer !== userGuess) {
-      console.log(`'${userGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);
-      return;
-    }
-
-    console.log('Correct!');
-
-    if (counter === countOfCorrectAnswers) {
-      console.log(`Congragulation, ${player}`);
-      return;
-    }
+  if (isRightAnswer(player, question, correctAnswer)) {
+    evenGame();
   }
 };
 

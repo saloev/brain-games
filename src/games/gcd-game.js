@@ -1,4 +1,6 @@
-import readlineSync from 'readline-sync';
+import { greetingUser, isRightAnswer, getRndInteger } from '..';
+
+const player = greetingUser('Find the greatest common divisor of given numbers.');
 
 const gcd = (num1, num2) => {
   if (num2 === 0) return num1;
@@ -6,28 +8,16 @@ const gcd = (num1, num2) => {
   return gcd(num2, num1 % num2);
 };
 
-const gcdGame = (player, countOfCorrectAnswers) => {
-  for (let counter = 1; counter <= countOfCorrectAnswers; counter += 1) {
-    const randomNumOneForGcd = Math.ceil(Math.random() * 50);
-    const randomNumTwoForGcd = Math.ceil(Math.random() * 50);
-    const question = `${randomNumOneForGcd} ${randomNumTwoForGcd}`;
+const gcdGame = () => {
+  const randomNumOneForGcd = getRndInteger(0, 50);
+  const randomNumTwoForGcd = getRndInteger(0, 50);
+  const question = `${randomNumOneForGcd} ${randomNumTwoForGcd}`;
 
-    console.log(`Question: ${question}`);
 
-    const correctAnswer = gcd(randomNumOneForGcd, randomNumTwoForGcd);
-    const userGuess = Number(readlineSync.question('Your answer : '));
+  const correctAnswer = gcd(randomNumOneForGcd, randomNumTwoForGcd);
 
-    if (correctAnswer !== userGuess) {
-      console.log(`'${userGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);
-      return;
-    }
-
-    console.log('Correct!');
-
-    if (counter === countOfCorrectAnswers) {
-      console.log(`Congragulation, ${player}`);
-      return;
-    }
+  if (isRightAnswer(player, question, correctAnswer)) {
+    gcdGame();
   }
 };
 
