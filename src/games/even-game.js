@@ -1,14 +1,14 @@
 import readlineSync from 'readline-sync';
 
+const countOfCorrectAnswers = 3;
+
 const isEven = num => num % 2 === 0;
 
 const evenGame = (player) => {
-  const countOfCorrectAnswers = 3;
-  const iter = (counter) => {
-    if (counter === countOfCorrectAnswers) {
-      console.log(`Congragulation, ${player}`);
-      return undefined;
-    }
+  let counter = 0;
+
+  while (counter < countOfCorrectAnswers) {
+    counter += 1;
 
     const question = Math.ceil(Math.random() * 50);
 
@@ -19,15 +19,16 @@ const evenGame = (player) => {
 
     if (correctAnswer !== userGuess) {
       console.log(`'${userGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);
-      return undefined;
+      return;
     }
 
     console.log('Correct!');
 
-    return iter(counter + 1);
-  };
-
-  return iter(0);
+    if (counter === countOfCorrectAnswers) {
+      console.log(`Congragulation, ${player}`);
+      return;
+    }
+   }
 };
 
 export default evenGame;
