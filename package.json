@@ -1,8 +1,12 @@
 {
   "name": "ss-brain-games",
-  "version": "1.6.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.7.0",
+  "description": "Brain-Training Games",
+  "keywords": [
+    "brain-games",
+    "brain-training",
+    "games"
+  ],
   "scripts": {
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "test": "echo \"Error: no test specified\" && exit 1",
