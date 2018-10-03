@@ -5,11 +5,7 @@ const countOfCorrectAnswers = 3;
 const isEven = num => num % 2 === 0;
 
 const evenGame = (player) => {
-  let counter = 0;
-
-  while (counter < countOfCorrectAnswers) {
-    counter += 1;
-
+  for (let counter = 1; counter <= countOfCorrectAnswers; counter += 1) {
     const question = Math.ceil(Math.random() * 50);
 
     console.log(`Question: ${question}`);
