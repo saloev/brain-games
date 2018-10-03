@@ -28,7 +28,7 @@ const evenGame = (player) => {
       console.log(`Congragulation, ${player}`);
       return;
     }
-   }
+  }
 };
 
 export default evenGame;
