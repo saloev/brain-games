@@ -1,10 +1,8 @@
 import readlineSync from 'readline-sync';
 
-const countOfCorrectAnswers = 3;
-
 const isEven = num => num % 2 === 0;
 
-const evenGame = (player) => {
+const evenGame = (player, countOfCorrectAnswers) => {
   for (let counter = 1; counter <= countOfCorrectAnswers; counter += 1) {
     const question = Math.ceil(Math.random() * 50);
 
