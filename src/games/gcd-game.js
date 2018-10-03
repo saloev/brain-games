@@ -4,7 +4,7 @@ const gcd = (num1, num2) => {
   if (num2 === 0) return num1;
 
   return gcd(num2, num1 % num2);
-}
+};
 
 const gcdGame = (player, countOfCorrectAnswers) => {
   for (let counter = 1; counter <= countOfCorrectAnswers; counter += 1) {
