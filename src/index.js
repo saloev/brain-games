@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import evenGame from './games/even-game';
 import calcGame from './games/calc-game';
+import gcdGame from './games/gcd-game';
 
 const countOfCorrectAnswers = 3;
 
@@ -22,4 +23,10 @@ export const startCalcGame = () => {
   const userName = greetingUser('What is the result of the expression?');
 
   calcGame(userName, countOfCorrectAnswers);
+};
+
+export const startGcdGame = () => {
+  const userName = greetingUser('Find the greatest common divisor of given numbers.');
+
+  gcdGame(userName, countOfCorrectAnswers);
 };
