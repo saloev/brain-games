@@ -1,14 +1,17 @@
+import { cons } from 'hexlet-pairs';
 import { checkAnswer, getRndInteger } from '..';
+
+const gameTitle = 'Answer "yes" if number even otherwise answer "no".';
 
 const isEven = num => num % 2 === 0;
 
-const evenGame = () => {
-  const gameTitle = 'Answer "yes" if number even otherwise answer "no".';
-
+const dataGenerator = () => {
   const question = getRndInteger(0, 50);
   const correctAnswer = isEven(question) ? 'yes' : 'no';
 
-  checkAnswer(evenGame, gameTitle, question, correctAnswer);
+  return cons(question, correctAnswer);
 };
+
+const evenGame = () => checkAnswer(gameTitle, dataGenerator);
 
 export default evenGame;

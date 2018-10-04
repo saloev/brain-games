@@ -1,7 +1,7 @@
 import readlineSync from 'readline-sync';
+import { car, cdr } from 'hexlet-pairs';
 
 let correctAnswersForWin = 3;
-let player;
 
 export const greetingUser = (gameTitle) => {
   console.log('Welcome to the Brain Games!');
@@ -11,10 +11,10 @@ export const greetingUser = (gameTitle) => {
   return userName;
 };
 
-export const checkAnswer = (gameFunc, gameTitle, question, correctAnswer) => {
-  if (correctAnswersForWin === 3) {
-    player = greetingUser(gameTitle);
-  }
+const generateDataAndCheckAnswer = (player, dataGenerator) => {
+  const data = dataGenerator();
+  const question = car(data);
+  const correctAnswer = cdr(data);
 
   console.log(`Question: ${question}`);
 
@@ -39,7 +39,13 @@ export const checkAnswer = (gameFunc, gameTitle, question, correctAnswer) => {
     return;
   }
 
-  gameFunc();
+  generateDataAndCheckAnswer(player, dataGenerator);
 };
+
+export const checkAnswer = (gameTitle, dataGenerator) => {
+  const player = greetingUser(gameTitle);
+  generateDataAndCheckAnswer(player, dataGenerator);
+};
+
 
 export const getRndInteger = (min, max) => Math.floor(Math.random() * (max - min) + min);

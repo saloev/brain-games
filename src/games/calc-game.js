@@ -1,39 +1,36 @@
-import { cons, car, cdr } from 'hexlet-pairs';
+import { cons } from 'hexlet-pairs';
 import { checkAnswer, getRndInteger } from '..';
 
-const addPair = pair => car(pair) + cdr(pair);
-const diffPair = pair => car(pair) - cdr(pair);
-const multPair = pair => car(pair) * cdr(pair);
+const gameTitle = 'What is the result of the expression?';
 
-const calcGame = () => {
+const dataGenerator = () => {
   const randomNumOneForExpression = getRndInteger(0, 50);
   const randomNumTwoForExpression = getRndInteger(0, 50);
   const randomNumForSign = getRndInteger(1, 4);
-  const gameTitle = 'What is the result of the expression?';
 
   let randomSignForExpression;
   let correctAnswer;
 
-  const pair = cons(randomNumOneForExpression, randomNumTwoForExpression);
-
   switch (randomNumForSign) {
     case 1:
       randomSignForExpression = '+';
-      correctAnswer = addPair(pair);
+      correctAnswer = randomNumOneForExpression + randomNumTwoForExpression;
       break;
     case 2:
       randomSignForExpression = '-';
-      correctAnswer = diffPair(pair);
+      correctAnswer = randomNumOneForExpression - randomNumTwoForExpression;
       break;
     default:
       randomSignForExpression = '*';
-      correctAnswer = multPair(pair);
+      correctAnswer = randomNumOneForExpression * randomNumTwoForExpression;
       break;
   }
 
-  const question = `${car(pair)} ${randomSignForExpression} ${cdr(pair)}`;
+  const question = `${randomNumOneForExpression} ${randomSignForExpression} ${randomNumTwoForExpression}`;
 
-  checkAnswer(calcGame, gameTitle, question, correctAnswer);
+  return cons(question, correctAnswer);
 };
+
+const calcGame = () => checkAnswer(gameTitle, dataGenerator);
 
 export default calcGame;
