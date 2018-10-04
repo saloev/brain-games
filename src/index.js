@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 
 let correctAnswersForWin = 3;
+let player;
 
 export const greetingUser = (gameTitle) => {
   console.log('Welcome to the Brain Games!');
@@ -10,7 +11,11 @@ export const greetingUser = (gameTitle) => {
   return userName;
 };
 
-export const isRightAnswer = (player, question, correctAnswer) => {
+export const checkAnswer = (gameFunc, gameTitle, question, correctAnswer) => {
+  if (correctAnswersForWin === 3) {
+    player = greetingUser(gameTitle);
+  }
+
   console.log(`Question: ${question}`);
 
   let playerGuess = readlineSync.question('Your answer : ');
@@ -22,7 +27,7 @@ export const isRightAnswer = (player, question, correctAnswer) => {
 
   if (correctAnswer !== playerGuess) {
     console.log(`'${playerGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);
-    return false;
+    return;
   }
 
   console.log('Correct!');
@@ -31,10 +36,10 @@ export const isRightAnswer = (player, question, correctAnswer) => {
 
   if (correctAnswersForWin === 0) {
     console.log(`Congragulation, ${player}`);
-    return false;
+    return;
   }
 
-  return true;
+  gameFunc();
 };
 
 export const getRndInteger = (min, max) => Math.floor(Math.random() * (max - min) + min);

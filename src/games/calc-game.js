@@ -1,7 +1,5 @@
 import { cons, car, cdr } from 'hexlet-pairs';
-import { greetingUser, isRightAnswer, getRndInteger } from '..';
-
-const player = greetingUser('What is the result of the expression?');
+import { checkAnswer, getRndInteger } from '..';
 
 const addPair = pair => car(pair) + cdr(pair);
 const diffPair = pair => car(pair) - cdr(pair);
@@ -11,6 +9,7 @@ const calcGame = () => {
   const randomNumOneForExpression = getRndInteger(0, 50);
   const randomNumTwoForExpression = getRndInteger(0, 50);
   const randomNumForSign = getRndInteger(1, 4);
+  const gameTitle = 'What is the result of the expression?';
 
   let randomSignForExpression;
   let correctAnswer;
@@ -34,9 +33,7 @@ const calcGame = () => {
 
   const question = `${car(pair)} ${randomSignForExpression} ${cdr(pair)}`;
 
-  if (isRightAnswer(player, question, correctAnswer)) {
-    calcGame();
-  }
+  checkAnswer(calcGame, gameTitle, question, correctAnswer);
 };
 
 export default calcGame;
