@@ -1,6 +1,4 @@
-import { getRndInteger } from '..';
-
-// const player = greetingUser('What number is missing in this progression?');
+import { checkAnswer, getRndInteger } from '..';
 
 const makeProgression = (beginWith, diffBetweenElements, countOfElements) => {
   if (countOfElements === 1) return beginWith;
@@ -9,30 +7,29 @@ const makeProgression = (beginWith, diffBetweenElements, countOfElements) => {
 };
 
 const hideElement = (str, position) => {
-  let newStr = '';
-  for (let count = 0; count <= str.length; count += 1) {
+  const strToArr = str.split(' ');
+  for (let count = 0; count <= strToArr.length; count += 1) {
     if (count === position) {
-      newStr += '..';
+      strToArr[count] = '..';
     }
-
-    newStr += str;
   }
 
-  return newStr;
+  return strToArr.join(' ');
 };
 
 
 const progressionGame = () => {
   const progStartWith = getRndInteger(1, 50);
   const progDiffBetweenElements = getRndInteger(1, 13);
-  const choseRandomPosition = getRndInteger(1, 15);
+  const choseRandomPosition = getRndInteger(1, 9);
   const progLength = getRndInteger(10, 16);
-
   const progression = makeProgression(progStartWith, progDiffBetweenElements, progLength);
+  const gameTitle = 'What number is missing in this progression?';
 
-  console.log(choseRandomPosition);
-  console.log(hideElement(progression, choseRandomPosition));
+  const question = hideElement(progression, choseRandomPosition);
+  const correctAnswer = progression.split(' ')[choseRandomPosition];
+
+  checkAnswer(progressionGame, gameTitle, question, correctAnswer);
 };
 
-
-progressionGame();
+export default progressionGame;
