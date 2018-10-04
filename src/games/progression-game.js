@@ -1,4 +1,4 @@
-import { greetingUser, isRightAnswer, getRndInteger } from '..';
+import { getRndInteger } from '..';
 
 // const player = greetingUser('What number is missing in this progression?');
 
@@ -23,12 +23,13 @@ const hideElement = (str, position) => {
 
 
 const progressionGame = () => {
-  const progressionStartWith = getRndInteger(1, 50);
-  const progressionDiffBetweenElements = getRndInteger(1, 13);
+  const progStartWith = getRndInteger(1, 50);
+  const progDiffBetweenElements = getRndInteger(1, 13);
   const choseRandomPosition = getRndInteger(1, 15);
-  const progressionLength = getRndInteger(10, 16);
+  const progLength = getRndInteger(10, 16);
 
-  const progression = makeProgression(progressionStartWith, progressionDiffBetweenElements, progressionLength);
+  const progression = makeProgression(progStartWith, progDiffBetweenElements, progLength);
+
   console.log(choseRandomPosition);
   console.log(hideElement(progression, choseRandomPosition));
 };
