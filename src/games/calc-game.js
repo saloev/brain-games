@@ -1,36 +1,33 @@
 import { cons } from 'hexlet-pairs';
-import { checkAnswer, getRndInteger } from '..';
+import getRndInteger from '../utils';
+import gameProcess from '..';
 
 const gameTitle = 'What is the result of the expression?';
 
 const dataGenerator = () => {
-  const randomNumOneForExpression = getRndInteger(0, 50);
-  const randomNumTwoForExpression = getRndInteger(0, 50);
-  const randomNumForSign = getRndInteger(1, 4);
+  const firstArg = getRndInteger(0, 50);
+  const secondArg = getRndInteger(0, 50);
+  const sign = '+-*'[getRndInteger(0, 3)];
 
-  let randomSignForExpression;
   let correctAnswer;
+  let question;
 
-  switch (randomNumForSign) {
-    case 1:
-      randomSignForExpression = '+';
-      correctAnswer = randomNumOneForExpression + randomNumTwoForExpression;
+  switch (sign) {
+    case '+':
+      question = `${firstArg} + ${secondArg}`;
+      correctAnswer = firstArg + secondArg;
       break;
-    case 2:
-      randomSignForExpression = '-';
-      correctAnswer = randomNumOneForExpression - randomNumTwoForExpression;
+    case '-':
+      question = `${firstArg} - ${secondArg}`;
+      correctAnswer = firstArg - secondArg;
       break;
     default:
-      randomSignForExpression = '*';
-      correctAnswer = randomNumOneForExpression * randomNumTwoForExpression;
+      question = `${firstArg} * ${secondArg}`;
+      correctAnswer = firstArg * secondArg;
       break;
   }
-
-  const question = `${randomNumOneForExpression} ${randomSignForExpression} ${randomNumTwoForExpression}`;
 
   return cons(question, correctAnswer);
 };
 
-const calcGame = () => checkAnswer(gameTitle, dataGenerator);
-
-export default calcGame;
+export default () => gameProcess(gameTitle, dataGenerator);

@@ -1,5 +1,6 @@
 import { cons } from 'hexlet-pairs';
-import { checkAnswer, getRndInteger } from '..';
+import getRndInteger from '../utils';
+import gameProcess from '..';
 
 const gameTitle = 'Find the greatest common divisor of given numbers.';
 
@@ -10,15 +11,13 @@ const gcd = (num1, num2) => {
 };
 
 const dataGenerator = () => {
-  const randomNumOneForGcd = getRndInteger(1, 50);
-  const randomNumTwoForGcd = getRndInteger(1, 50);
+  const firsArg = getRndInteger(1, 50);
+  const secondArg = getRndInteger(1, 50);
 
-  const question = `${randomNumOneForGcd} ${randomNumTwoForGcd}`;
-  const correctAnswer = gcd(randomNumOneForGcd, randomNumTwoForGcd);
+  const question = `${firsArg} ${secondArg}`;
+  const correctAnswer = gcd(firsArg, secondArg);
 
   return cons(question, correctAnswer);
 };
 
-const gcdGame = () => checkAnswer(gameTitle, dataGenerator);
-
-export default gcdGame;
+export default () => gameProcess(gameTitle, dataGenerator);

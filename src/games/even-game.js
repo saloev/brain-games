@@ -1,5 +1,6 @@
 import { cons } from 'hexlet-pairs';
-import { checkAnswer, getRndInteger } from '..';
+import getRndInteger from '../utils';
+import gameProcess from '..';
 
 const gameTitle = 'Answer "yes" if number even otherwise answer "no".';
 
@@ -12,6 +13,4 @@ const dataGenerator = () => {
   return cons(question, correctAnswer);
 };
 
-const evenGame = () => checkAnswer(gameTitle, dataGenerator);
-
-export default evenGame;
+export default () => gameProcess(gameTitle, dataGenerator);
