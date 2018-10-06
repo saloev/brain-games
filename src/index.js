@@ -19,11 +19,7 @@ const generateDataAndCheckAnswer = (player, dataGenerator) => {
 
     console.log(`Question: ${question}`);
 
-    let playerGuess = readlineSync.question('Your answer : ');
-
-    if (typeof correctAnswer === 'number') {
-      playerGuess = +playerGuess;
-    }
+    const playerGuess = readlineSync.question('Your answer : ');
 
     if (correctAnswer !== playerGuess) {
       console.log(`'${playerGuess}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, ${player}`);

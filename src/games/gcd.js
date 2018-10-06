@@ -17,7 +17,7 @@ const dataGenerator = () => {
   const question = `${firsArg} ${secondArg}`;
   const correctAnswer = gcd(firsArg, secondArg);
 
-  return cons(question, correctAnswer);
+  return cons(question, `${correctAnswer}`);
 };
 
 export default () => gameProcess(gameTitle, dataGenerator);

@@ -22,7 +22,7 @@ const dataGenerator = () => {
   const question = makeProgression(start, step, count, count - position);
   const correctAnswer = start + step * position;
 
-  return cons(question, correctAnswer);
+  return cons(question, `${correctAnswer}`);
 };
 
 export default () => gameProcess(gameTitle, dataGenerator);

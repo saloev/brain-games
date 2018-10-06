@@ -27,7 +27,7 @@ const dataGenerator = () => {
       break;
   }
 
-  return cons(question, correctAnswer);
+  return cons(question, `${correctAnswer}`);
 };
 
 export default () => gameProcess(gameTitle, dataGenerator);
